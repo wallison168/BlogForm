@@ -34,13 +34,15 @@ router.post('/categorias/nova', (req, res) => {
         res.render('admin/addcategorias', {erros: erros})
     }
 
+
     const novaCategoria = {
         nome: req.body.nome,
         slug: req.body.slug
     }
+    
 
     new Categoria(novaCategoria).save().then(() => {
-        console.log('nova categoria cadastrada')
+        res.redirect('/admin/categorias')
     }).catch((err) => {
         console.log(`erro ao cadastrar a nova categoria : ${err}`)
     })
