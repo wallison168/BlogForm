@@ -5,7 +5,7 @@
     const app = express()
     const admin = require('./routes/admin')
     const path = require('path')
-    //const mongoose = require('mongoose')
+    const mongoose = require('mongoose')
 
 //Configurações 
     //Body-parser
@@ -21,7 +21,14 @@
 
     //Mongoose
 
+        mongoose.connect('mongodb://localhost/blogapp').then(() => {
+            console.log('conexão feita')
+        }).catch((err) => {
+            console.log(`erro na conexão : ${err}`)
+        })
+
     //Public 
+
         app.use(express.static(path.join(__dirname, 'public'))) //Baicamente essa função ira pegar as funcionalidades dos arquivos contidos dentro da pasta public ou seja os arquivos estaticos 
 
 //Rotas
